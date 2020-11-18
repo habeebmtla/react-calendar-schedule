@@ -1,0 +1,15 @@
+.monthView table {
+  width: 100%;
+  min-height: 600px;
+  border-bottom: 1px solid #eee;
+  border-right: 1px solid #eee;
+}
+
+.monthView table tr {
+  vertical-align: top;
+}
+
+.monthView table tr td {
+  border-top: 1px solid #eee;
+  border-left: 1px solid #eee;
+}

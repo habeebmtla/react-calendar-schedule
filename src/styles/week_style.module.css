@@ -1,0 +1,28 @@
+.weekView table {
+  width: 100%;
+}
+
+.weekView table tr td {
+  border-bottom: 1px solid #eee;
+}
+
+.weekView table tr td.time {
+  font-size: 12px;
+  vertical-align: top;
+  height: 35px;
+}
+
+.weekView table tr td {
+  border-right: 1px solid #eee;
+}
+
+.weekView table thead {
+  background: #495668;
+  color: #fff;
+}
+
+.weekView table th {
+  padding: 5px;
+}
+
+

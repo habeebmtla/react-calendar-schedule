@@ -1,0 +1,30 @@
+.dayView table {
+  width: 100%;
+}
+
+.dayView table tr td {
+  border-bottom: 1px solid #eee;
+}
+
+.dayView table tr td.time {
+  font-size: 12px;
+  vertical-align: top;
+  height: 35px;
+}
+
+.dayView table tr td {
+  border-right: 1px solid #eee;
+}
+
+.dayView table th:not(:first-child), .dayView table td:not(:first-child) {
+  min-width: 200px;
+}
+
+.dayView table thead {
+  background: #495668;
+  color: #fff;
+}
+
+.dayView table th {
+  padding: 5px;
+}
