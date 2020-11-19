@@ -6,11 +6,14 @@ import WeekTitleRow from './Week/WeekTitleRow'
 import styles from './styles/week_style.module.css'
 import TimeRow from './Week/TimeRow'
 import classNames from 'classnames'
+import getWeekEvents from './Week/utils/getWeekEvents'
 
 const Week = props => {
-  const { min, max, weekRootClassName } = props
+  const { min, max, weekRootClassName, events } = props
   let timeArray = getCalendarDayTimeArray(min, max)
   let weekArray = getCalendarWeekArray()
+  let weekEvents = getWeekEvents(events)
+  console.log(weekEvents)
   return (
     <div className={classNames(styles.weekView, weekRootClassName)}>
       <table>
@@ -23,7 +26,7 @@ const Week = props => {
             <TimeRow
               key={index}
               time={item}
-              {...{ weekArray }}
+              {...{ weekArray, weekEvents }}
             />
           )
         }

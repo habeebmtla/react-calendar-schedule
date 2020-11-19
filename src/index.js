@@ -6,6 +6,7 @@ import ToolBar from './ToolBar'
 import Week from './Week'
 import style from './styles/style.module.css'
 import classNames from 'classnames'
+import { resources } from '../example/src/utils/exampleData'
 
 const ReactCalendarSchedule = (props) => {
   const { rootClassName } = props
@@ -26,14 +27,20 @@ const ReactCalendarSchedule = (props) => {
   return (
     <div className={(classNames(style.root, rootClassName))}>
       <ToolBar onViewChange={onViewChange} />
-      {getView()}
+      <div className={style.calendar}>
+        {getView()}
+      </div>
     </div>
   )
 }
 
 ReactCalendarSchedule.propTypes = {
   view: PropTypes.string,
-  date: PropTypes.string
+  date: PropTypes.string,
+  events: PropTypes.array,
+  resources: PropTypes.array,
+  resourceTitleAccessor: PropTypes.string,
+  resourceIdAccessor: PropTypes.string
 }
 
 export default ReactCalendarSchedule

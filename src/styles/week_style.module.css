@@ -14,6 +14,7 @@
 
 .weekView table tr td {
   border-right: 1px solid #eee;
+  overflow: hidden;
 }
 
 .weekView table thead {
@@ -23,6 +24,20 @@
 
 .weekView table th {
   padding: 5px;
+}
+
+.weekView table tr td .event {
+  background: #495668;
+  color: #fff;
+  width: 1.5vw;
+  height: 1.5vw;
+  font-size: 0.9vw;
+  display: flex;
+  margin-right: 0.3vw;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2vw;
 }
 
 
