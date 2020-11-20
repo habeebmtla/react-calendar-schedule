@@ -9,7 +9,10 @@ import getDayEvents from './Day/utils/getDayEvents'
 import moment from 'moment'
 
 const Day = props => {
-  const { date, min, max, resources, resourceTitleAccessor, resourceIdAccessor, dayRootClassName, events, fixedHeader } = props
+  const {
+    date, min, max, resources, resourceTitleAccessor, resourceIdAccessor, dayRootClassName, events, fixedHeader,
+    onSelectEvent
+  } = props
   let selectedDate = date ? moment(date) : moment()
   let timeArray = getCalendarDayTimeArray(min, max)
   let dayEvents = getDayEvents(events)
@@ -26,7 +29,7 @@ const Day = props => {
             <DayRow
               key={index}
               time={item}
-              {...{ resources, dayEvents, selectedDate, resourceIdAccessor }}
+              {...{ resources, dayEvents, selectedDate, resourceIdAccessor, onSelectEvent }}
             />
           )
         }
@@ -36,6 +39,17 @@ const Day = props => {
   )
 }
 
-Day.propTypes = {}
+Day.propTypes = {
+  date: PropTypes.string,
+  min: PropTypes.string,
+  max: PropTypes.string,
+  resources: PropTypes.array,
+  resourceTitleAccessor: PropTypes.string,
+  resourceIdAccessor: PropTypes.string,
+  dayRootClassName: PropTypes.string,
+  events: PropTypes.array,
+  fixedHeader: PropTypes.bool,
+  onSelectEvent: PropTypes.func
+}
 
 export default Day

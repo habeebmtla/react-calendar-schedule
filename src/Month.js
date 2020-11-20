@@ -8,7 +8,7 @@ import getMonthEvents from './Month/utils/getMonthEvents'
 import WeekHeader from './Month/WeekHeader'
 
 const Month = (props) => {
-  const { date, monthRootClassName, events, fixedHeader } = props
+  const { date, monthRootClassName, events, fixedHeader, onSelectEvent } = props
   let range = getCalendarMonthArray(date)
   let monthEvents = getMonthEvents(events)
   return (
@@ -17,7 +17,8 @@ const Month = (props) => {
         <WeekHeader {...{ fixedHeader }} />
         <tbody>
         {
-          range && range.map((item, index) => <WeekRow {...{ monthEvents }} key={index} days={item.days} />)
+          range && range.map((item, index) => <WeekRow {...{ monthEvents, onSelectEvent }} key={index}
+                                                       days={item.days} />)
         }
         </tbody>
       </table>
@@ -26,6 +27,12 @@ const Month = (props) => {
   )
 }
 
-Month.propTypes = {}
+Month.propTypes = {
+  date: PropTypes.string,
+  events: PropTypes.array,
+  monthRootClassName: PropTypes.string,
+  fixedHeader: PropTypes.bool,
+  onSelectEvent: PropTypes.func
+}
 
 export default Month

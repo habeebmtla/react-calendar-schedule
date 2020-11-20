@@ -4,9 +4,8 @@ import moment from 'moment'
 import styles from '../styles/week_style.module.css'
 
 const WeekEvents = props => {
-  const { weekDay, weekEvents, time } = props
+  const { weekDay, weekEvents, time, onSelectEvent } = props
   let dateTime = weekDay.format('YYYY-MM-DD') + ` ${time}`
-  console.log(weekEvents[dateTime])
   return (
     <div style={{ display: 'flex', position: 'absolute', top: 0 }}>
       {
@@ -19,6 +18,7 @@ const WeekEvents = props => {
                   key={index}
                   className={styles.event}
                   style={item.background ? { background: item.background } : {}}
+                  onClick={() => onSelectEvent(item)}
                 >{item.avatarText}</div>
               </div>
             )
@@ -34,6 +34,11 @@ const WeekEvents = props => {
   )
 }
 
-WeekEvents.propTypes = {}
+WeekEvents.propTypes = {
+  weekDay: PropTypes.object,
+  weekEvents: PropTypes.object,
+  time: PropTypes.string,
+  onSelectEvent: PropTypes.func
+}
 
 export default WeekEvents

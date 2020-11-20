@@ -17,6 +17,8 @@ const WeekHeader = props => {
   )
 }
 
-WeekHeader.propTypes = {}
+WeekHeader.propTypes = {
+  fixedHeader: PropTypes.bool
+}
 
 export default WeekHeader

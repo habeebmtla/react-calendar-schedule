@@ -4,7 +4,7 @@ import styles from '../styles/month_style.module.css'
 import moment from 'moment'
 
 const DayEvents = props => {
-  const { dayEvents } = props
+  const { dayEvents, onSelectEvent } = props
   return (
     <div style={{ display: 'flex', marginTop: 15, position: 'absolute' }}>
       {
@@ -16,6 +16,7 @@ const DayEvents = props => {
                 key={index}
                 className={styles.event}
                 style={item.background ? { background: item.background } : {}}
+                onClick={() => onSelectEvent(item)}
               >{item.avatarText}</div>
             )
         })
@@ -31,6 +32,9 @@ const DayEvents = props => {
   )
 }
 
-DayEvents.propTypes = {}
+DayEvents.propTypes = {
+  dayEvents: PropTypes.array,
+  onSelectEvent: PropTypes.func
+}
 
 export default DayEvents

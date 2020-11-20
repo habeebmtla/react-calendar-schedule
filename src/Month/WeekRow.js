@@ -4,7 +4,7 @@ import moment from 'moment'
 import DayEvents from './DayEvents'
 
 const WeekRow = props => {
-  let { days, monthEvents } = props
+  let { days, monthEvents, onSelectEvent } = props
 
   return (
     <tr>
@@ -16,7 +16,7 @@ const WeekRow = props => {
               <div style={{ textAlign: 'right' }}>
                 {moment(item).format('DD')}
               </div>
-              <DayEvents {...{ dayEvents }} />
+              <DayEvents {...{ dayEvents, onSelectEvent }} />
             </td>
           )
         })
@@ -25,6 +25,10 @@ const WeekRow = props => {
   )
 }
 
-WeekRow.propTypes = {}
+WeekRow.propTypes = {
+  days: PropTypes.array,
+  monthEvents: PropTypes.object,
+  onSelectEvent: PropTypes.func
+}
 
 export default WeekRow

@@ -110,7 +110,7 @@ export const events = [
     title: 'zumba',
     avatarText: 'KR',
     start: '2020-11-20 17:15',
-    end: '2020-11-20 17:45',
+    end: '2020-11-20 18:15',
     resourceId: 3
   },
   {

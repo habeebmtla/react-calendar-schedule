@@ -16,6 +16,7 @@ const App = () => {
         min={'04:00'}
         max={'20:00'}
         fixedHeader={true}
+        onSelectEvent={(e) => console.log(e)}
       />
     </div>
   )

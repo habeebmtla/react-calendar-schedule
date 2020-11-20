@@ -20,6 +20,10 @@ const Resources = props => {
   )
 }
 
-Resources.propTypes = {}
+Resources.propTypes = {
+  resources: PropTypes.array,
+  resourceTitleAccessor: PropTypes.string,
+  fixedHeader: PropTypes.bool
+}
 
 export default Resources

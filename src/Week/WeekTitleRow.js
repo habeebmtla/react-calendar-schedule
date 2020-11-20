@@ -21,6 +21,9 @@ const WeekTitleRow = props => {
   )
 }
 
-WeekTitleRow.propTypes = {}
+WeekTitleRow.propTypes = {
+  weekArray: PropTypes.array,
+  fixedHeader: PropTypes.bool
+}
 
 export default WeekTitleRow

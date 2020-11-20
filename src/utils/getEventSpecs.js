@@ -1,6 +1,6 @@
 import moment from 'moment'
 
-const SINGLE_EVENT_HEIGHT = 40
+const SINGLE_EVENT_HEIGHT = 50
 const EVENT_PADDING = 20
 
 export default (event) => {

@@ -40,7 +40,13 @@ ReactCalendarSchedule.propTypes = {
   events: PropTypes.array,
   resources: PropTypes.array,
   resourceTitleAccessor: PropTypes.string,
-  resourceIdAccessor: PropTypes.string
+  resourceIdAccessor: PropTypes.string,
+  fixedHeader: PropTypes.bool,
+  onSelectEvent: PropTypes.func,
+  rootClassName: PropTypes.string,
+  monthRootClassName: PropTypes.string,
+  weekRootClassName: PropTypes.string,
+  dayRootClassName: PropTypes.string
 }
 
 export default ReactCalendarSchedule
