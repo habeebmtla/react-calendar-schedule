@@ -9,7 +9,7 @@ import getDayEvents from './Day/utils/getDayEvents'
 import moment from 'moment'
 
 const Day = props => {
-  const { date, min, max, resources, resourceTitleAccessor, resourceIdAccessor, dayRootClassName, events } = props
+  const { date, min, max, resources, resourceTitleAccessor, resourceIdAccessor, dayRootClassName, events, fixedHeader } = props
   let selectedDate = date ? moment(date) : moment()
   let timeArray = getCalendarDayTimeArray(min, max)
   let dayEvents = getDayEvents(events)
@@ -19,7 +19,7 @@ const Day = props => {
         <colgroup>
           <col style={{ width: 60 }} />
         </colgroup>
-        <Resources {...{ resources, resourceTitleAccessor }} />
+        <Resources {...{ resources, resourceTitleAccessor, fixedHeader }} />
         <tbody>
         {
           timeArray && timeArray.map((item, index) =>

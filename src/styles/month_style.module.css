@@ -6,6 +6,15 @@
   table-layout: fixed;
 }
 
+.monthView table thead {
+  background: #495668;
+  color: #fff;
+}
+
+.monthView table th {
+  padding: 5px;
+}
+
 .monthView table tr {
   vertical-align: top;
 }

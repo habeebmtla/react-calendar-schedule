@@ -1,17 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
+import { fixedHeaderStyle } from '../styles/styles'
 
 const WeekTitleRow = props => {
-  const { weekArray } = props
+  const { weekArray, fixedHeader } = props
   return (
     <thead>
     <tr>
-      <th></th>
+      <th style={{ background: '#fff' }}></th>
       {
         weekArray && weekArray.map((item, index) => {
           return (
-            <th key={index}>{moment(item).format('DD ddd')}</th>
+            <th style={fixedHeader ? fixedHeaderStyle : {}} key={index}>{moment(item).format('DD ddd')}</th>
           )
         })
       }

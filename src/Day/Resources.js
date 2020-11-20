@@ -1,16 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { fixedHeaderStyle } from '../styles/styles'
 
 const Resources = props => {
-  const { resources, resourceTitleAccessor } = props
+  const { resources, resourceTitleAccessor, fixedHeader } = props
   return (
     <thead>
     <tr>
-      <th></th>
+      <th style={{ background: '#fff' }}></th>
       {
         resources && resources.map((item, index) => {
           return (
-            <th key={index}>{item[resourceTitleAccessor]}</th>
+            <th style={fixedHeader ? fixedHeaderStyle : {}} key={index}>{item[resourceTitleAccessor]}</th>
           )
         })
       }

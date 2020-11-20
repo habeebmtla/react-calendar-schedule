@@ -5,14 +5,16 @@ import WeekRow from './Month/WeekRow'
 import monthStyles from './styles/month_style.module.css'
 import classNames from 'classnames'
 import getMonthEvents from './Month/utils/getMonthEvents'
+import WeekHeader from './Month/WeekHeader'
 
 const Month = (props) => {
-  const { date, monthRootClassName, events } = props
+  const { date, monthRootClassName, events, fixedHeader } = props
   let range = getCalendarMonthArray(date)
   let monthEvents = getMonthEvents(events)
   return (
     <div className={classNames(monthStyles.monthView, monthRootClassName)}>
       <table>
+        <WeekHeader {...{ fixedHeader }} />
         <tbody>
         {
           range && range.map((item, index) => <WeekRow {...{ monthEvents }} key={index} days={item.days} />)
