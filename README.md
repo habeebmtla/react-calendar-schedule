@@ -1,4 +1,5 @@
 # react-calendar-schedule
+<!---
 
 > Made with create-react-library
 
@@ -9,6 +10,7 @@
 ```bash
 npm install --save react-calendar-schedule
 ```
+-->
 
 ## Usage
 
@@ -24,7 +26,8 @@ class Example extends Component {
   }
 }
 ```
-
+<!--
 ## License
 
 MIT © [habeeb1995](https://github.com/habeeb1995)
+-->
