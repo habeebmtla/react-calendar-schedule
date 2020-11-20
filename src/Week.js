@@ -9,11 +9,10 @@ import classNames from 'classnames'
 import getWeekEvents from './Week/utils/getWeekEvents'
 
 const Week = props => {
-  const { min, max, weekRootClassName, events } = props
+  const { min, max, weekRootClassName, events, date } = props
   let timeArray = getCalendarDayTimeArray(min, max)
-  let weekArray = getCalendarWeekArray()
+  let weekArray = getCalendarWeekArray(date)
   let weekEvents = getWeekEvents(events)
-  console.log(weekEvents)
   return (
     <div className={classNames(styles.weekView, weekRootClassName)}>
       <table>

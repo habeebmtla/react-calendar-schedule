@@ -5,10 +5,14 @@ import DayRow from './Day/DayRow'
 import dayViewStyle from './styles/day_style.module.css'
 import Resources from './Day/Resources'
 import classNames from 'classnames'
+import getDayEvents from './Day/utils/getDayEvents'
+import moment from 'moment'
 
 const Day = props => {
-  const { date, min, max, resources, resourceTitleAccessor, dayRootClassName } = props
+  const { date, min, max, resources, resourceTitleAccessor, resourceIdAccessor, dayRootClassName, events } = props
+  let selectedDate = date ? moment(date) : moment()
   let timeArray = getCalendarDayTimeArray(min, max)
+  let dayEvents = getDayEvents(events)
   return (
     <div className={classNames(dayViewStyle.dayView, dayRootClassName)}>
       <table>
@@ -22,7 +26,7 @@ const Day = props => {
             <DayRow
               key={index}
               time={item}
-              {...{ resources }}
+              {...{ resources, dayEvents, selectedDate, resourceIdAccessor }}
             />
           )
         }

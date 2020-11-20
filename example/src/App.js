@@ -12,7 +12,7 @@ const App = () => {
         events={events}
         resourceTitleAccessor={'resourceTitle'}
         resourceIdAccessor={'resourceId'}
-        view={'week'}
+        view={'day'}
         min={'04:00'}
         max={'20:00'}
       />
