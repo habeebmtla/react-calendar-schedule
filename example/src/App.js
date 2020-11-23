@@ -15,11 +15,28 @@ const App = () => {
         view={'day'}
         min={'04:00'}
         max={'20:00'}
+        date={'2020-11-20'}
         fixedHeader={true}
         onSelectEvent={(e) => console.log(e)}
+        onSelectSlot={(e) => console.log(e)}
+        components={{
+          Toolbar
+        }}
       />
     </div>
   )
 }
 
 export default App
+
+
+const Toolbar = (props) => {
+  const { onViewChange } = props
+  return (
+    <div>
+      <button onClick={() => onViewChange('day')}>day</button>
+      <button onClick={() => onViewChange('week')}>week</button>
+      <button onClick={() => onViewChange('month')}>month</button>
+    </div>
+  )
+}

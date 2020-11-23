@@ -9,9 +9,10 @@ import classNames from 'classnames'
 import { resources } from '../example/src/utils/exampleData'
 
 const ReactCalendarSchedule = (props) => {
-  const { rootClassName } = props
+  const { rootClassName, components } = props
   const [view, onViewChange] = useState(props.view)
   const [date, onNavigate] = useState(props.date)
+  const CustomToolbar = components.Toolbar
   const getView = () => {
     switch (view) {
       case 'month':
@@ -26,7 +27,8 @@ const ReactCalendarSchedule = (props) => {
   }
   return (
     <div className={(classNames(style.root, rootClassName))}>
-      <ToolBar onViewChange={onViewChange} />
+      {CustomToolbar ? <CustomToolbar {...{ onViewChange, onNavigate }} /> :
+        <ToolBar {...{ onViewChange, onNavigate }} />}
       <div className={style.calendar}>
         {getView()}
       </div>
@@ -43,10 +45,12 @@ ReactCalendarSchedule.propTypes = {
   resourceIdAccessor: PropTypes.string,
   fixedHeader: PropTypes.bool,
   onSelectEvent: PropTypes.func,
+  onSelectSlot: PropTypes.func,
   rootClassName: PropTypes.string,
   monthRootClassName: PropTypes.string,
   weekRootClassName: PropTypes.string,
-  dayRootClassName: PropTypes.string
+  dayRootClassName: PropTypes.string,
+  components: PropTypes.object
 }
 
 export default ReactCalendarSchedule

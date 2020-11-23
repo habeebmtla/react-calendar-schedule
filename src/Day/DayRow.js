@@ -2,9 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from '../styles/day_style.module.css'
 import Events from './Events'
+import moment from 'moment'
 
 const DayRow = props => {
-  let { time, resources, dayEvents, selectedDate, resourceIdAccessor, onSelectEvent } = props
+  let { time, resources, dayEvents, selectedDate, resourceIdAccessor, onSelectEvent, onSelectSlot } = props
+
+  const selectSlot = () => {
+    let date = selectedDate.format('YYYY-MM-DD')
+    let start = date + ` ${time}`
+    let end = date + ` ${moment(time, 'HH:mm').add(30, 'minute').format('HH:mm')}`
+    let slotInfo = {
+      start,
+      end
+    }
+    onSelectSlot(slotInfo)
+  }
 
   return (
     <tr>
@@ -12,7 +24,7 @@ const DayRow = props => {
       {
         resources ? resources.map((item, index) => {
             return (
-              <td style={{ position: 'relative' }} key={index}>
+              <td onClick={selectSlot} style={{ position: 'relative' }} key={index}>
                 <Events
                   resource={item}
                   {...{ dayEvents, selectedDate, time, resourceIdAccessor, onSelectEvent }}
@@ -20,7 +32,7 @@ const DayRow = props => {
               </td>
             )
           })
-          : <td style={{ position: 'relative' }}>
+          : <td onClick={selectSlot} style={{ position: 'relative' }}>
             <Events
               {...{ dayEvents, selectedDate, time, resourceIdAccessor, onSelectEvent }}
             />
@@ -36,7 +48,8 @@ DayRow.propTypes = {
   dayEvents: PropTypes.object,
   selectedDate: PropTypes.object,
   resourceIdAccessor: PropTypes.string,
-  onSelectEvent: PropTypes.func
+  onSelectEvent: PropTypes.func,
+  onSelectSlot: PropTypes.func
 }
 
 export default DayRow

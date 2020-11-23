@@ -9,7 +9,7 @@ import classNames from 'classnames'
 import getWeekEvents from './Week/utils/getWeekEvents'
 
 const Week = props => {
-  const { min, max, weekRootClassName, events, date, fixedHeader, onSelectEvent } = props
+  const { min, max, weekRootClassName, events, date, fixedHeader, onSelectEvent, onSelectSlot } = props
   let timeArray = getCalendarDayTimeArray(min, max)
   let weekArray = getCalendarWeekArray(date)
   let weekEvents = getWeekEvents(events)
@@ -25,7 +25,7 @@ const Week = props => {
             <TimeRow
               key={index}
               time={item}
-              {...{ weekArray, weekEvents, onSelectEvent }}
+              {...{ weekArray, weekEvents, onSelectEvent, onSelectSlot }}
             />
           )
         }
@@ -41,7 +41,8 @@ Week.propTypes = {
   events: PropTypes.array,
   date: PropTypes.string,
   fixedHeader: PropTypes.bool,
-  onSelectEvent: PropTypes.func
+  onSelectEvent: PropTypes.func,
+  onSelectSlot: PropTypes.func
 }
 
 export default Week

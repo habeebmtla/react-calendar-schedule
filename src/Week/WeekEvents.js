@@ -18,7 +18,10 @@ const WeekEvents = props => {
                   key={index}
                   className={styles.event}
                   style={item.background ? { background: item.background } : {}}
-                  onClick={() => onSelectEvent(item)}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onSelectEvent(item)
+                  }}
                 >{item.avatarText}</div>
               </div>
             )
