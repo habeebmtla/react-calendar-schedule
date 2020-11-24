@@ -7,7 +7,7 @@ const WeekEvents = props => {
   const { weekDay, weekEvents, time, onSelectEvent } = props
   let dateTime = weekDay.format('YYYY-MM-DD') + ` ${time}`
   return (
-    <div style={{ display: 'flex', position: 'absolute', top: 0 }}>
+    <div style={{ display: 'flex', position: 'absolute', top: 2, left: 2 }}>
       {
         weekEvents[dateTime] && weekEvents[dateTime].map((item, index) => {
           if (index < 5)

@@ -10,6 +10,7 @@
   font-size: 12px;
   vertical-align: top;
   height: 50px;
+  padding: 0;
 }
 
 .dayView table tr td {

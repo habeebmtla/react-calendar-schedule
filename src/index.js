@@ -12,7 +12,7 @@ const ReactCalendarSchedule = (props) => {
   const { rootClassName, components } = props
   const [view, onViewChange] = useState(props.view)
   const [date, onNavigate] = useState(props.date)
-  const CustomToolbar = components.Toolbar
+  const CustomToolbar = components && components.Toolbar
   const getView = () => {
     switch (view) {
       case 'month':
@@ -27,7 +27,7 @@ const ReactCalendarSchedule = (props) => {
   }
   return (
     <div className={(classNames(style.root, rootClassName))}>
-      {CustomToolbar ? <CustomToolbar {...{ onViewChange, onNavigate }} /> :
+      {CustomToolbar ? <CustomToolbar {...{ onViewChange, onNavigate, view, date }} /> :
         <ToolBar {...{ onViewChange, onNavigate }} />}
       <div className={style.calendar}>
         {getView()}
@@ -39,7 +39,7 @@ const ReactCalendarSchedule = (props) => {
 ReactCalendarSchedule.propTypes = {
   view: PropTypes.string,
   date: PropTypes.string,
-  events: PropTypes.array,
+  events: PropTypes.array.isRequired,
   resources: PropTypes.array,
   resourceTitleAccessor: PropTypes.string,
   resourceIdAccessor: PropTypes.string,

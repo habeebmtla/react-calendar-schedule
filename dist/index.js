@@ -1118,7 +1118,7 @@ var getCalendarMonthArray = (function (selectedDate) {
   return calendar;
 });
 
-var monthStyles = {"monthView":"_3XGYO","event":"_39Rn3"};
+var monthStyles = {"monthView":"_month_style-module__monthView__3XGYO","event":"_month_style-module__event__39Rn3"};
 
 var DayEvents = function DayEvents(props) {
   var dayEvents = props.dayEvents,
@@ -1279,7 +1279,7 @@ var getCalendarDayTimeArray = (function (min, max) {
   return timeArray;
 });
 
-var dayViewStyle = {"dayView":"_3emB6","time":"_1bULH","event":"_2rGJH"};
+var dayViewStyle = {"dayView":"_day_style-module__dayView__3emB6","time":"_day_style-module__time__1bULH","event":"_day_style-module__event__2rGJH"};
 
 var SINGLE_EVENT_HEIGHT = 50;
 var EVENT_PADDING = 20;
@@ -1551,7 +1551,7 @@ WeekTitleRow.propTypes = {
   fixedHeader: propTypes.bool
 };
 
-var styles = {"weekView":"_2lP0W","time":"_2D6wS","event":"_8k6qD"};
+var styles = {"weekView":"_week_style-module__weekView__2lP0W","time":"_week_style-module__time__2D6wS","event":"_week_style-module__event__8k6qD"};
 
 var WeekEvents = function WeekEvents(props) {
   var weekDay = props.weekDay,
@@ -1673,7 +1673,7 @@ var Week = function Week(props) {
     className: classNames(styles.weekView, weekRootClassName)
   }, /*#__PURE__*/React__default.createElement("table", null, /*#__PURE__*/React__default.createElement("colgroup", null, /*#__PURE__*/React__default.createElement("col", {
     style: {
-      width: 60
+      width: '5%'
     }
   })), /*#__PURE__*/React__default.createElement(WeekTitleRow, {
     weekArray: weekArray,
@@ -1702,7 +1702,7 @@ Week.propTypes = {
   onSelectSlot: propTypes.func
 };
 
-var style = {"root":"_hQD01","calendar":"_mNSVf"};
+var style = {"root":"_style-module__root__hQD01","calendar":"_style-module__calendar__mNSVf"};
 
 var ReactCalendarSchedule = function ReactCalendarSchedule(props) {
   var rootClassName = props.rootClassName,

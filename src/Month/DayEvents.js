@@ -6,7 +6,7 @@ import moment from 'moment'
 const DayEvents = props => {
   const { dayEvents, onSelectEvent } = props
   return (
-    <div style={{ display: 'flex', marginTop: 15, position: 'absolute' }}>
+    <div style={{ display: 'flex', marginTop: 15, position: 'absolute', left: 2 }}>
       {
         dayEvents && dayEvents.map((item, index) => {
           if (index < 5)
