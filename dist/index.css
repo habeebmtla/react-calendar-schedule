@@ -1,0 +1,139 @@
+._3XGYO table {
+  width: 100%;
+  min-height: 600px;
+  border-bottom: 1px solid #eee;
+  border-right: 1px solid #eee;
+  table-layout: fixed;
+}
+
+._3XGYO table thead {
+  background: #495668;
+  color: #fff;
+}
+
+._3XGYO table th {
+  padding: 5px;
+}
+
+._3XGYO table tr {
+  vertical-align: top;
+}
+
+._3XGYO table tr td {
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  min-width: 100px;
+}
+
+._3XGYO table tr td ._39Rn3 {
+  background: #495668;
+  color: #fff;
+  width: 1.5vw;
+  height: 1.5vw;
+  font-size: 0.9vw;
+  display: flex;
+  margin-right: 0.3vw;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2vw;
+  cursor: pointer;
+}
+
+._3emB6 table {
+  width: 100%;
+}
+
+._3emB6 table tr td {
+  border-bottom: 1px solid #eee;
+}
+
+._3emB6 table tr td._1bULH {
+  font-size: 12px;
+  vertical-align: top;
+  height: 50px;
+}
+
+._3emB6 table tr td {
+  border-right: 1px solid #eee;
+}
+
+._3emB6 table th:not(:first-child), ._3emB6 table td:not(:first-child) {
+  min-width: 200px;
+}
+
+._3emB6 table thead {
+  background: #495668;
+  color: #fff;
+}
+
+._3emB6 table th {
+  padding: 5px;
+}
+
+._3emB6 table tr td ._2rGJH {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  background: #7cb342;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 1;
+  box-shadow: 0px 1px 8px 0px rgba(80, 80, 80, 0.2), 0px 3px 4px 0px rgba(80, 80, 80, 0.14), 0px 3px 3px -2px rgba(80, 80, 80, 0.12);
+  cursor: pointer;
+}
+
+._2lP0W table {
+  width: 100%;
+}
+
+._2lP0W table tr td {
+  border-bottom: 1px solid #eee;
+}
+
+._2lP0W table tr td._2D6wS {
+  font-size: 12px;
+  vertical-align: top;
+  height: 50px;
+}
+
+._2lP0W table tr td {
+  border-right: 1px solid #eee;
+  overflow: hidden;
+}
+
+._2lP0W table thead {
+  background: #495668;
+  color: #fff;
+}
+
+._2lP0W table th {
+  padding: 5px;
+}
+
+._2lP0W table tr td ._8k6qD {
+  background: #495668;
+  color: #fff;
+  width: 1.5vw;
+  height: 1.5vw;
+  font-size: 0.9vw;
+  display: flex;
+  margin-right: 0.3vw;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2vw;
+  cursor: pointer;
+}
+
+
+
+._hQD01 {
+  /*margin: 20px;*/
+}
+
+._hQD01 ._mNSVf {
+  margin: 20px 0;
+}
