@@ -52,6 +52,13 @@
   vertical-align: top;
   height: 50px;
   padding: 0;
+  min-width: 60px;
+  box-sizing: border-box;
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  background: #fff;
+  z-index: 2;
 }
 
 ._3emB6 table tr td {
@@ -85,6 +92,23 @@
   cursor: pointer;
 }
 
+._hQD01 {
+  /*margin: 20px;*/
+}
+
+._hQD01 ._mNSVf {
+  margin: 20px 0;
+}
+
+._WtKY3 {
+  width: 100%;
+  overflow: auto;
+}
+
+._WtKY3 table {
+  margin: 0;
+}
+
 ._2lP0W table {
   width: 100%;
 }
@@ -98,6 +122,13 @@
   vertical-align: top;
   height: 50px;
   padding: 0;
+  min-width: 60px;
+  box-sizing: border-box;
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  background: #fff;
+  z-index: 2;
 }
 
 ._2lP0W table tr td {
@@ -129,11 +160,3 @@
 }
 
 
-
-._hQD01 {
-  /*margin: 20px;*/
-}
-
-._hQD01 ._mNSVf {
-  margin: 20px 0;
-}

@@ -11,6 +11,12 @@
   vertical-align: top;
   height: 50px;
   padding: 0;
+  min-width: 60px;
+  box-sizing: border-box;
+  position: sticky;
+  left: 0;
+  background: #fff;
+  z-index: 2;
 }
 
 .weekView table tr td {

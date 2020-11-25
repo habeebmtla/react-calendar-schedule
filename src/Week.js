@@ -7,14 +7,15 @@ import styles from './styles/week_style.module.css'
 import TimeRow from './Week/TimeRow'
 import classNames from 'classnames'
 import getWeekEvents from './Week/utils/getWeekEvents'
+import style from './styles/style.module.css'
 
 const Week = props => {
-  const { min, max, weekRootClassName, events, date, fixedHeader, onSelectEvent, onSelectSlot } = props
+  const { min, max, weekRootClassName, events, date, fixedHeader, onSelectEvent, onSelectSlot, height } = props
   let timeArray = getCalendarDayTimeArray(min, max)
   let weekArray = getCalendarWeekArray(date)
   let weekEvents = getWeekEvents(events)
   return (
-    <div className={classNames(styles.weekView, weekRootClassName)}>
+    <div style={{ height }} className={classNames(styles.weekView, style.container, weekRootClassName)}>
       <table>
         <colgroup>
           <col style={{ width: 60 }} />

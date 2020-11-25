@@ -7,17 +7,17 @@ import Resources from './Day/Resources'
 import classNames from 'classnames'
 import getDayEvents from './Day/utils/getDayEvents'
 import moment from 'moment'
-
+import style from './styles/style.module.css'
 const Day = props => {
   const {
     date, min, max, resources, resourceTitleAccessor, resourceIdAccessor, dayRootClassName, events, fixedHeader,
-    onSelectEvent, onSelectSlot
+    onSelectEvent, onSelectSlot, height
   } = props
   let selectedDate = date ? moment(date) : moment()
   let timeArray = getCalendarDayTimeArray(min, max)
   let dayEvents = getDayEvents(events)
   return (
-    <div className={classNames(dayViewStyle.dayView, dayRootClassName)}>
+    <div style={{ height }} className={classNames(dayViewStyle.dayView, style.container, dayRootClassName)}>
       <table>
         <colgroup>
           <col style={{ width: 60 }} />

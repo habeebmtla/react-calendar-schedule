@@ -19,8 +19,11 @@ const Events = props => {
               <div
                 key={index}
                 className={styles.event}
-                style={{ height, top: offset }}
-                onClick={() => onSelectEvent(item)}
+                style={{ height, top: offset, boxSizing: 'border-box' }}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onSelectEvent(item)
+                }}
               >
                 <span
                   style={{ fontSize: '75%' }}>{moment(item.start).format('hh:mm A')} - {moment(item.end).format('hh:mm A')}</span><br />

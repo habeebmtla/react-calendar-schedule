@@ -1283,19 +1283,18 @@ var getCalendarDayTimeArray = (function (min, max) {
 var dayViewStyle = {"dayView":"_3emB6","time":"_1bULH","event":"_2rGJH"};
 
 var SINGLE_EVENT_HEIGHT = 50;
-var EVENT_PADDING = 20;
 var getEventSpecs = (function (event) {
   var diff = moment(event.end).diff(moment(event.start), 'hour', true);
   var minute = moment(event.start).format('mm');
   minute = parseInt(minute);
   var offset_minute;
 
-  if (minute > 0 && minute < 30) {
+  if (minute >= 0 && minute < 30) {
     offset_minute = minute;
   } else offset_minute = minute - 30;
 
   var offset = SINGLE_EVENT_HEIGHT / 30 * offset_minute;
-  var event_height = SINGLE_EVENT_HEIGHT * diff * 2 - EVENT_PADDING;
+  var event_height = SINGLE_EVENT_HEIGHT * diff * 2;
   return {
     height: event_height,
     offset: offset
@@ -1321,10 +1320,12 @@ var Events = function Events(props) {
       className: dayViewStyle.event,
       style: {
         height: height,
-        top: offset
+        top: offset,
+        boxSizing: 'border-box'
       },
-      onClick: function onClick() {
-        return onSelectEvent(item);
+      onClick: function onClick(e) {
+        e.stopPropagation();
+        onSelectEvent(item);
       }
     }, /*#__PURE__*/React__default.createElement("span", {
       style: {
@@ -1445,6 +1446,8 @@ var getDayEvents = (function (events, selectedDate) {
   return dayEvents;
 });
 
+var style = {"root":"_hQD01","calendar":"_mNSVf","container":"_WtKY3"};
+
 var Day = function Day(props) {
   var date = props.date,
       min = props.min,
@@ -1456,12 +1459,16 @@ var Day = function Day(props) {
       events = props.events,
       fixedHeader = props.fixedHeader,
       onSelectEvent = props.onSelectEvent,
-      onSelectSlot = props.onSelectSlot;
+      onSelectSlot = props.onSelectSlot,
+      height = props.height;
   var selectedDate = date ? moment(date) : moment();
   var timeArray = getCalendarDayTimeArray(min, max);
   var dayEvents = getDayEvents(events);
   return /*#__PURE__*/React__default.createElement("div", {
-    className: classNames(dayViewStyle.dayView, dayRootClassName)
+    style: {
+      height: height
+    },
+    className: classNames(dayViewStyle.dayView, style.container, dayRootClassName)
   }, /*#__PURE__*/React__default.createElement("table", null, /*#__PURE__*/React__default.createElement("colgroup", null, /*#__PURE__*/React__default.createElement("col", {
     style: {
       width: 60
@@ -1667,12 +1674,16 @@ var Week = function Week(props) {
       date = props.date,
       fixedHeader = props.fixedHeader,
       onSelectEvent = props.onSelectEvent,
-      onSelectSlot = props.onSelectSlot;
+      onSelectSlot = props.onSelectSlot,
+      height = props.height;
   var timeArray = getCalendarDayTimeArray(min, max);
   var weekArray = getCalendarWeekArray(date);
   var weekEvents = getWeekEvents(events);
   return /*#__PURE__*/React__default.createElement("div", {
-    className: classNames(styles.weekView, weekRootClassName)
+    style: {
+      height: height
+    },
+    className: classNames(styles.weekView, style.container, weekRootClassName)
   }, /*#__PURE__*/React__default.createElement("table", null, /*#__PURE__*/React__default.createElement("colgroup", null, /*#__PURE__*/React__default.createElement("col", {
     style: {
       width: 60
@@ -1703,8 +1714,6 @@ Week.propTypes = {
   onSelectEvent: propTypes.func,
   onSelectSlot: propTypes.func
 };
-
-var style = {"root":"_hQD01","calendar":"_mNSVf"};
 
 var ReactCalendarSchedule = function ReactCalendarSchedule(props) {
   var rootClassName = props.rootClassName,

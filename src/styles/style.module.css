@@ -5,3 +5,12 @@
 .root .calendar {
   margin: 20px 0;
 }
+
+.container {
+  width: 100%;
+  overflow: auto;
+}
+
+.container table {
+  margin: 0;
+}

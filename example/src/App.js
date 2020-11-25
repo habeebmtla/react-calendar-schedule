@@ -15,6 +15,7 @@ const App = () => {
         view={'day'}
         min={'04:00'}
         max={'20:00'}
+        height={'90vh'}
         date={'2020-11-20'}
         fixedHeader={true}
         onSelectEvent={(e) => console.log(e)}
