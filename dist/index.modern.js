@@ -2,6 +2,24 @@ import React, { useState } from 'react';
 import moment from 'moment';
 import classNames from 'classnames';
 
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
@@ -1079,44 +1097,45 @@ if (process.env.NODE_ENV !== 'production') {
 }
 });
 
-var getCalendarMonthArray = (selectedDate => {
-  let currentDate = selectedDate ? moment(selectedDate) : moment();
-  let calendar = [];
-  const startDay = currentDate.clone().startOf('month').startOf('week');
-  const endDay = currentDate.clone().endOf('month').endOf('week');
-  let date = startDay.clone().subtract(1, 'day');
+var getCalendarMonthArray = (function (selectedDate) {
+  var currentDate = selectedDate ? moment(selectedDate) : moment();
+  var calendar = [];
+  var startDay = currentDate.clone().startOf('month').startOf('week');
+  var endDay = currentDate.clone().endOf('month').endOf('week');
+  var date = startDay.clone().subtract(1, 'day');
 
   while (date.isBefore(endDay, 'day')) {
     calendar.push({
-      days: Array(7).fill(0).map(() => date.add(1, 'day').clone())
+      days: Array(7).fill(0).map(function () {
+        return date.add(1, 'day').clone();
+      })
     });
   }
 
   return calendar;
 });
 
-var monthStyles = {"monthView":"_month_style-module__monthView__3XGYO","event":"_month_style-module__event__39Rn3"};
+var monthStyles = {"monthView":"_3XGYO","event":"_39Rn3"};
 
-const DayEvents = props => {
-  const {
-    dayEvents,
-    onSelectEvent
-  } = props;
+var DayEvents = function DayEvents(props) {
+  var dayEvents = props.dayEvents,
+      onSelectEvent = props.onSelectEvent;
   return /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       marginTop: 15,
-      position: 'absolute'
+      position: 'absolute',
+      left: 2
     }
-  }, dayEvents && dayEvents.map((item, index) => {
+  }, dayEvents && dayEvents.map(function (item, index) {
     if (index < 5) return /*#__PURE__*/React.createElement("div", {
-      title: `${item.title}: ${moment(item.start).format('hh:mm A')} -- ${moment(item.end).format('hh:mm A')}`,
+      title: item.title + ": " + moment(item.start).format('hh:mm A') + " -- " + moment(item.end).format('hh:mm A'),
       key: index,
       className: monthStyles.event,
       style: item.background ? {
         background: item.background
       } : {},
-      onClick: e => {
+      onClick: function onClick(e) {
         e.stopPropagation();
         onSelectEvent(item);
       }
@@ -1131,26 +1150,26 @@ DayEvents.propTypes = {
   onSelectEvent: propTypes.func
 };
 
-const WeekRow = props => {
-  let {
-    days,
-    monthEvents,
-    onSelectEvent,
-    onSelectSlot
-  } = props;
+var WeekRow = function WeekRow(props) {
+  var days = props.days,
+      monthEvents = props.monthEvents,
+      onSelectEvent = props.onSelectEvent,
+      onSelectSlot = props.onSelectSlot;
 
-  const selectSlot = slot => {
-    let slotInfo = {
+  var selectSlot = function selectSlot(slot) {
+    var slotInfo = {
       start: slot.format('YYYY-MM-DD HH:mm'),
       end: slot.format('YYYY-MM-DD HH:mm')
     };
     onSelectSlot(slotInfo);
   };
 
-  return /*#__PURE__*/React.createElement("tr", null, days && days.map((item, index) => {
-    let dayEvents = monthEvents[item.format('YYYY-MM-DD')];
+  return /*#__PURE__*/React.createElement("tr", null, days && days.map(function (item, index) {
+    var dayEvents = monthEvents[item.format('YYYY-MM-DD')];
     return /*#__PURE__*/React.createElement("td", {
-      onClick: e => selectSlot(item),
+      onClick: function onClick(e) {
+        return selectSlot(item);
+      },
       style: {
         position: 'relative'
       },
@@ -1160,8 +1179,8 @@ const WeekRow = props => {
         textAlign: 'right'
       }
     }, item.format('DD')), /*#__PURE__*/React.createElement(DayEvents, {
-      dayEvents,
-      onSelectEvent
+      dayEvents: dayEvents,
+      onSelectEvent: onSelectEvent
     }));
   }));
 };
@@ -1173,60 +1192,60 @@ WeekRow.propTypes = {
   onSelectSlot: propTypes.func
 };
 
-var getMonthEvents = (events => {
-  let monthEvents = {};
-  events.forEach(item => {
-    let startDate = moment(item.start).format('YYYY-MM-DD');
+var getMonthEvents = (function (events) {
+  var monthEvents = {};
+  events.forEach(function (item) {
+    var startDate = moment(item.start).format('YYYY-MM-DD');
     if (monthEvents[startDate]) monthEvents[startDate].push(item);else monthEvents[startDate] = [item];
   });
   return monthEvents;
 });
 
-const fixedHeaderStyle = {
+var fixedHeaderStyle = {
   position: 'sticky',
   top: 0,
   background: '#495668',
   zIndex: 1
 };
 
-const WeekHeader = props => {
-  const {
-    fixedHeader
-  } = props;
-  const weeks = moment.weekdaysShort();
-  return /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, weeks && weeks.map((item, index) => /*#__PURE__*/React.createElement("th", {
-    style: fixedHeader ? fixedHeaderStyle : {},
-    key: index
-  }, item))));
+var WeekHeader = function WeekHeader(props) {
+  var fixedHeader = props.fixedHeader;
+  var weeks = moment.weekdaysShort();
+  return /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, weeks && weeks.map(function (item, index) {
+    return /*#__PURE__*/React.createElement("th", {
+      style: fixedHeader ? fixedHeaderStyle : {},
+      key: index
+    }, item);
+  })));
 };
 
 WeekHeader.propTypes = {
   fixedHeader: propTypes.bool
 };
 
-const Month = props => {
-  const {
-    date,
-    monthRootClassName,
-    events,
-    fixedHeader,
-    onSelectEvent,
-    onSelectSlot
-  } = props;
-  let range = getCalendarMonthArray(date);
-  let monthEvents = getMonthEvents(events);
+var Month = function Month(props) {
+  var date = props.date,
+      monthRootClassName = props.monthRootClassName,
+      events = props.events,
+      fixedHeader = props.fixedHeader,
+      onSelectEvent = props.onSelectEvent,
+      onSelectSlot = props.onSelectSlot;
+  var range = getCalendarMonthArray(date);
+  var monthEvents = getMonthEvents(events);
   return /*#__PURE__*/React.createElement("div", {
     className: classNames(monthStyles.monthView, monthRootClassName)
   }, /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement(WeekHeader, {
-    fixedHeader
-  }), /*#__PURE__*/React.createElement("tbody", null, range && range.map((item, index) => /*#__PURE__*/React.createElement(WeekRow, Object.assign({}, {
-    monthEvents,
-    onSelectEvent,
-    onSelectSlot
-  }, {
-    key: index,
-    days: item.days
-  }))))));
+    fixedHeader: fixedHeader
+  }), /*#__PURE__*/React.createElement("tbody", null, range && range.map(function (item, index) {
+    return /*#__PURE__*/React.createElement(WeekRow, _extends({
+      monthEvents: monthEvents,
+      onSelectEvent: onSelectEvent,
+      onSelectSlot: onSelectSlot
+    }, {
+      key: index,
+      days: item.days
+    }));
+  }))));
 };
 
 Month.propTypes = {
@@ -1238,68 +1257,72 @@ Month.propTypes = {
   onSelectSlot: propTypes.func
 };
 
-var getCalendarDayTimeArray = ((min, max) => {
-  const hours = Array.from({
+var getCalendarDayTimeArray = (function (min, max) {
+  var hours = Array.from({
     length: 48
-  }, (_, hour) => moment({
-    hour: Math.floor(hour / 2),
-    minutes: hour % 2 === 0 ? 0 : 30
-  }).format('HH:mm'));
-  let timeArray = hours;
+  }, function (_, hour) {
+    return moment({
+      hour: Math.floor(hour / 2),
+      minutes: hour % 2 === 0 ? 0 : 30
+    }).format('HH:mm');
+  });
+  var timeArray = hours;
 
   if (min && max) {
-    timeArray = hours.filter(el => el >= min && el <= max);
+    timeArray = hours.filter(function (el) {
+      return el >= min && el <= max;
+    });
   }
 
   return timeArray;
 });
 
-var dayViewStyle = {"dayView":"_day_style-module__dayView__3emB6","time":"_day_style-module__time__1bULH","event":"_day_style-module__event__2rGJH"};
+var dayViewStyle = {"dayView":"_3emB6","time":"_1bULH","event":"_2rGJH"};
 
-const SINGLE_EVENT_HEIGHT = 50;
-const EVENT_PADDING = 20;
-var getEventSpecs = (event => {
-  let diff = moment(event.end).diff(moment(event.start), 'hour', true);
-  let minute = moment(event.start).format('mm');
+var SINGLE_EVENT_HEIGHT = 50;
+var EVENT_PADDING = 20;
+var getEventSpecs = (function (event) {
+  var diff = moment(event.end).diff(moment(event.start), 'hour', true);
+  var minute = moment(event.start).format('mm');
   minute = parseInt(minute);
-  let offset_minute;
+  var offset_minute;
 
   if (minute > 0 && minute < 30) {
     offset_minute = minute;
   } else offset_minute = minute - 30;
 
-  let offset = SINGLE_EVENT_HEIGHT / 30 * offset_minute;
-  let event_height = SINGLE_EVENT_HEIGHT * diff * 2 - EVENT_PADDING;
+  var offset = SINGLE_EVENT_HEIGHT / 30 * offset_minute;
+  var event_height = SINGLE_EVENT_HEIGHT * diff * 2 - EVENT_PADDING;
   return {
     height: event_height,
-    offset
+    offset: offset
   };
 });
 
-const Events = props => {
-  let {
-    time,
-    resource,
-    dayEvents,
-    selectedDate,
-    resourceIdAccessor,
-    onSelectEvent
-  } = props;
-  let dateTime = selectedDate.format('YYYY-MM-DD') + ` ${time}`;
-  let events = dayEvents[dateTime];
-  return /*#__PURE__*/React.createElement("div", null, events && events.map((item, index) => {
-    let {
-      height,
-      offset
-    } = getEventSpecs(item);
+var Events = function Events(props) {
+  var time = props.time,
+      resource = props.resource,
+      dayEvents = props.dayEvents,
+      selectedDate = props.selectedDate,
+      resourceIdAccessor = props.resourceIdAccessor,
+      onSelectEvent = props.onSelectEvent;
+  var dateTime = selectedDate.format('YYYY-MM-DD') + (" " + time);
+  var events = dayEvents[dateTime];
+  return /*#__PURE__*/React.createElement("div", null, events && events.map(function (item, index) {
+    var _getEventSpecs = getEventSpecs(item),
+        height = _getEventSpecs.height,
+        offset = _getEventSpecs.offset;
+
     if (resource && resource[resourceIdAccessor] === item[resourceIdAccessor] || !resource) return /*#__PURE__*/React.createElement("div", {
       key: index,
       className: dayViewStyle.event,
       style: {
-        height,
+        height: height,
         top: offset
       },
-      onClick: () => onSelectEvent(item)
+      onClick: function onClick() {
+        return onSelectEvent(item);
+      }
     }, /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: '75%'
@@ -1317,45 +1340,43 @@ Events.propTypes = {
   onSelectEvent: propTypes.func
 };
 
-const DayRow = props => {
-  let {
-    time,
-    resources,
-    dayEvents,
-    selectedDate,
-    resourceIdAccessor,
-    onSelectEvent,
-    onSelectSlot
-  } = props;
+var DayRow = function DayRow(props) {
+  var time = props.time,
+      resources = props.resources,
+      dayEvents = props.dayEvents,
+      selectedDate = props.selectedDate,
+      resourceIdAccessor = props.resourceIdAccessor,
+      onSelectEvent = props.onSelectEvent,
+      onSelectSlot = props.onSelectSlot;
 
-  const selectSlot = () => {
-    let date = selectedDate.format('YYYY-MM-DD');
-    let start = date + ` ${time}`;
-    let end = date + ` ${moment(time, 'HH:mm').add(30, 'minute').format('HH:mm')}`;
-    let slotInfo = {
-      start,
-      end
+  var selectSlot = function selectSlot() {
+    var date = selectedDate.format('YYYY-MM-DD');
+    var start = date + (" " + time);
+    var end = date + (" " + moment(time, 'HH:mm').add(30, 'minute').format('HH:mm'));
+    var slotInfo = {
+      start: start,
+      end: end
     };
     onSelectSlot(slotInfo);
   };
 
   return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
     className: dayViewStyle.time
-  }, time), resources ? resources.map((item, index) => {
+  }, time), resources ? resources.map(function (item, index) {
     return /*#__PURE__*/React.createElement("td", {
       onClick: selectSlot,
       style: {
         position: 'relative'
       },
       key: index
-    }, /*#__PURE__*/React.createElement(Events, Object.assign({
+    }, /*#__PURE__*/React.createElement(Events, _extends({
       resource: item
     }, {
-      dayEvents,
-      selectedDate,
-      time,
-      resourceIdAccessor,
-      onSelectEvent
+      dayEvents: dayEvents,
+      selectedDate: selectedDate,
+      time: time,
+      resourceIdAccessor: resourceIdAccessor,
+      onSelectEvent: onSelectEvent
     })));
   }) : /*#__PURE__*/React.createElement("td", {
     onClick: selectSlot,
@@ -1363,11 +1384,11 @@ const DayRow = props => {
       position: 'relative'
     }
   }, /*#__PURE__*/React.createElement(Events, {
-    dayEvents,
-    selectedDate,
-    time,
-    resourceIdAccessor,
-    onSelectEvent
+    dayEvents: dayEvents,
+    selectedDate: selectedDate,
+    time: time,
+    resourceIdAccessor: resourceIdAccessor,
+    onSelectEvent: onSelectEvent
   })));
 };
 
@@ -1381,17 +1402,15 @@ DayRow.propTypes = {
   onSelectSlot: propTypes.func
 };
 
-const Resources = props => {
-  const {
-    resources,
-    resourceTitleAccessor,
-    fixedHeader
-  } = props;
+var Resources = function Resources(props) {
+  var resources = props.resources,
+      resourceTitleAccessor = props.resourceTitleAccessor,
+      fixedHeader = props.fixedHeader;
   return /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
     style: {
       background: '#fff'
     }
-  }), resources && resources.map((item, index) => {
+  }), resources && resources.map(function (item, index) {
     return /*#__PURE__*/React.createElement("th", {
       style: fixedHeader ? fixedHeaderStyle : {},
       key: index
@@ -1405,41 +1424,39 @@ Resources.propTypes = {
   fixedHeader: propTypes.bool
 };
 
-var getDayEvents = ((events, selectedDate) => {
-  let dayEvents = {};
-  events.forEach(item => {
-    let startDate = moment(item.start).format('YYYY-MM-DD');
-    let hour = moment(item.start).format('HH');
-    let minute = moment(item.start).format('mm');
+var getDayEvents = (function (events, selectedDate) {
+  var dayEvents = {};
+  events.forEach(function (item) {
+    var startDate = moment(item.start).format('YYYY-MM-DD');
+    var hour = moment(item.start).format('HH');
+    var minute = moment(item.start).format('mm');
 
     if (parseInt(minute) < 30) {
-      let full_hour_data = dayEvents[`${startDate} ${hour}:00`];
-      if (full_hour_data) dayEvents[`${startDate} ${hour}:00`].push(item);else dayEvents[`${startDate} ${hour}:00`] = [item];
+      var full_hour_data = dayEvents[startDate + " " + hour + ":00"];
+      if (full_hour_data) dayEvents[startDate + " " + hour + ":00"].push(item);else dayEvents[startDate + " " + hour + ":00"] = [item];
     } else {
-      let half_hour_data = dayEvents[`${startDate} ${hour}:30`];
-      if (half_hour_data) dayEvents[`${startDate} ${hour}:30`].push(item);else dayEvents[`${startDate} ${hour}:30`] = [item];
+      var half_hour_data = dayEvents[startDate + " " + hour + ":30"];
+      if (half_hour_data) dayEvents[startDate + " " + hour + ":30"].push(item);else dayEvents[startDate + " " + hour + ":30"] = [item];
     }
   });
   return dayEvents;
 });
 
-const Day = props => {
-  const {
-    date,
-    min,
-    max,
-    resources,
-    resourceTitleAccessor,
-    resourceIdAccessor,
-    dayRootClassName,
-    events,
-    fixedHeader,
-    onSelectEvent,
-    onSelectSlot
-  } = props;
-  let selectedDate = date ? moment(date) : moment();
-  let timeArray = getCalendarDayTimeArray(min, max);
-  let dayEvents = getDayEvents(events);
+var Day = function Day(props) {
+  var date = props.date,
+      min = props.min,
+      max = props.max,
+      resources = props.resources,
+      resourceTitleAccessor = props.resourceTitleAccessor,
+      resourceIdAccessor = props.resourceIdAccessor,
+      dayRootClassName = props.dayRootClassName,
+      events = props.events,
+      fixedHeader = props.fixedHeader,
+      onSelectEvent = props.onSelectEvent,
+      onSelectSlot = props.onSelectSlot;
+  var selectedDate = date ? moment(date) : moment();
+  var timeArray = getCalendarDayTimeArray(min, max);
+  var dayEvents = getDayEvents(events);
   return /*#__PURE__*/React.createElement("div", {
     className: classNames(dayViewStyle.dayView, dayRootClassName)
   }, /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("colgroup", null, /*#__PURE__*/React.createElement("col", {
@@ -1447,20 +1464,22 @@ const Day = props => {
       width: 60
     }
   })), /*#__PURE__*/React.createElement(Resources, {
-    resources,
-    resourceTitleAccessor,
-    fixedHeader
-  }), /*#__PURE__*/React.createElement("tbody", null, timeArray && timeArray.map((item, index) => /*#__PURE__*/React.createElement(DayRow, Object.assign({
-    key: index,
-    time: item
-  }, {
-    resources,
-    dayEvents,
-    selectedDate,
-    resourceIdAccessor,
-    onSelectEvent,
-    onSelectSlot
-  }))))));
+    resources: resources,
+    resourceTitleAccessor: resourceTitleAccessor,
+    fixedHeader: fixedHeader
+  }), /*#__PURE__*/React.createElement("tbody", null, timeArray && timeArray.map(function (item, index) {
+    return /*#__PURE__*/React.createElement(DayRow, _extends({
+      key: index,
+      time: item
+    }, {
+      resources: resources,
+      dayEvents: dayEvents,
+      selectedDate: selectedDate,
+      resourceIdAccessor: resourceIdAccessor,
+      onSelectEvent: onSelectEvent,
+      onSelectSlot: onSelectSlot
+    }));
+  }))));
 };
 
 Day.propTypes = {
@@ -1477,27 +1496,31 @@ Day.propTypes = {
   onSelectSlot: propTypes.func
 };
 
-const ToolBar = props => {
-  const {
-    onViewChange
-  } = props;
+var ToolBar = function ToolBar(props) {
+  var onViewChange = props.onViewChange;
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
-    onClick: () => onViewChange('day')
+    onClick: function onClick() {
+      return onViewChange('day');
+    }
   }, "day"), /*#__PURE__*/React.createElement("button", {
-    onClick: () => onViewChange('week')
+    onClick: function onClick() {
+      return onViewChange('week');
+    }
   }, "week"), /*#__PURE__*/React.createElement("button", {
-    onClick: () => onViewChange('month')
+    onClick: function onClick() {
+      return onViewChange('month');
+    }
   }, "month"));
 };
 
 ToolBar.propTypes = {};
 
-var getCalendarWeekArray = (selectedDate => {
-  let currentDate = selectedDate ? moment(selectedDate) : moment();
-  let calendar = [];
-  const startDay = currentDate.clone().startOf('week');
-  const endDay = currentDate.clone().endOf('week');
-  let date = startDay.clone().subtract(1, 'day');
+var getCalendarWeekArray = (function (selectedDate) {
+  var currentDate = selectedDate ? moment(selectedDate) : moment();
+  var calendar = [];
+  var startDay = currentDate.clone().startOf('week');
+  var endDay = currentDate.clone().endOf('week');
+  var date = startDay.clone().subtract(1, 'day');
 
   while (date.isBefore(endDay, 'day')) {
     calendar.push(date.add(1, 'day').clone());
@@ -1506,16 +1529,14 @@ var getCalendarWeekArray = (selectedDate => {
   return calendar;
 });
 
-const WeekTitleRow = props => {
-  const {
-    weekArray,
-    fixedHeader
-  } = props;
+var WeekTitleRow = function WeekTitleRow(props) {
+  var weekArray = props.weekArray,
+      fixedHeader = props.fixedHeader;
   return /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
     style: {
       background: '#fff'
     }
-  }), weekArray && weekArray.map((item, index) => {
+  }), weekArray && weekArray.map(function (item, index) {
     return /*#__PURE__*/React.createElement("th", {
       style: fixedHeader ? fixedHeaderStyle : {},
       key: index
@@ -1528,33 +1549,32 @@ WeekTitleRow.propTypes = {
   fixedHeader: propTypes.bool
 };
 
-var styles = {"weekView":"_week_style-module__weekView__2lP0W","time":"_week_style-module__time__2D6wS","event":"_week_style-module__event__8k6qD"};
+var styles = {"weekView":"_2lP0W","time":"_2D6wS","event":"_8k6qD"};
 
-const WeekEvents = props => {
-  const {
-    weekDay,
-    weekEvents,
-    time,
-    onSelectEvent
-  } = props;
-  let dateTime = weekDay.format('YYYY-MM-DD') + ` ${time}`;
+var WeekEvents = function WeekEvents(props) {
+  var weekDay = props.weekDay,
+      weekEvents = props.weekEvents,
+      time = props.time,
+      onSelectEvent = props.onSelectEvent;
+  var dateTime = weekDay.format('YYYY-MM-DD') + (" " + time);
   return /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       position: 'absolute',
-      top: 0
+      top: 2,
+      left: 2
     }
-  }, weekEvents[dateTime] && weekEvents[dateTime].map((item, index) => {
+  }, weekEvents[dateTime] && weekEvents[dateTime].map(function (item, index) {
     if (index < 5) return /*#__PURE__*/React.createElement("div", {
       key: index
     }, /*#__PURE__*/React.createElement("div", {
-      title: `${item.title}: ${moment(item.start).format('hh:mm A')} - ${moment(item.end).format('hh:mm A')}`,
+      title: item.title + ": " + moment(item.start).format('hh:mm A') + " - " + moment(item.end).format('hh:mm A'),
       key: index,
       className: styles.event,
       style: item.background ? {
         background: item.background
       } : {},
-      onClick: e => {
+      onClick: function onClick(e) {
         e.stopPropagation();
         onSelectEvent(item);
       }
@@ -1571,38 +1591,38 @@ WeekEvents.propTypes = {
   onSelectEvent: propTypes.func
 };
 
-const TimeRow = props => {
-  const {
-    time,
-    weekArray,
-    weekEvents,
-    onSelectEvent,
-    onSelectSlot
-  } = props;
+var TimeRow = function TimeRow(props) {
+  var time = props.time,
+      weekArray = props.weekArray,
+      weekEvents = props.weekEvents,
+      onSelectEvent = props.onSelectEvent,
+      onSelectSlot = props.onSelectSlot;
 
-  const selectSlot = slot => {
-    let date = slot.format('YYYY-MM-DD');
-    let start = date + ` ${time}`;
-    let end = date + ` ${moment(time, 'HH:mm').add(30, 'minute').format('HH:mm')}`;
-    let slotInfo = {
-      start,
-      end
+  var selectSlot = function selectSlot(slot) {
+    var date = slot.format('YYYY-MM-DD');
+    var start = date + (" " + time);
+    var end = date + (" " + moment(time, 'HH:mm').add(30, 'minute').format('HH:mm'));
+    var slotInfo = {
+      start: start,
+      end: end
     };
     onSelectSlot(slotInfo);
   };
 
   return /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
     className: styles.time
-  }, time), weekArray ? weekArray.map((item, index) => {
+  }, time), weekArray ? weekArray.map(function (item, index) {
     return /*#__PURE__*/React.createElement("td", {
-      onClick: () => selectSlot(item),
+      onClick: function onClick() {
+        return selectSlot(item);
+      },
       style: {
         position: 'relative'
       },
       key: index
-    }, /*#__PURE__*/React.createElement(WeekEvents, Object.assign({}, {
-      weekEvents,
-      onSelectEvent
+    }, /*#__PURE__*/React.createElement(WeekEvents, _extends({
+      weekEvents: weekEvents,
+      onSelectEvent: onSelectEvent
     }, {
       weekDay: item,
       time: time
@@ -1618,56 +1638,56 @@ TimeRow.propTypes = {
   onSelectSlot: propTypes.func
 };
 
-var getWeekEvents = (events => {
-  let weekEvents = {};
-  events.forEach(item => {
-    let startDate = moment(item.start).format('YYYY-MM-DD');
-    let hour = moment(item.start).format('HH');
-    let minute = moment(item.start).format('mm');
+var getWeekEvents = (function (events) {
+  var weekEvents = {};
+  events.forEach(function (item) {
+    var startDate = moment(item.start).format('YYYY-MM-DD');
+    var hour = moment(item.start).format('HH');
+    var minute = moment(item.start).format('mm');
 
     if (parseInt(minute) < 30) {
-      let full_hour_data = weekEvents[`${startDate} ${hour}:00`];
-      if (full_hour_data) weekEvents[`${startDate} ${hour}:00`].push(item);else weekEvents[`${startDate} ${hour}:00`] = [item];
+      var full_hour_data = weekEvents[startDate + " " + hour + ":00"];
+      if (full_hour_data) weekEvents[startDate + " " + hour + ":00"].push(item);else weekEvents[startDate + " " + hour + ":00"] = [item];
     } else {
-      let half_hour_data = weekEvents[`${startDate} ${hour}:30`];
-      if (half_hour_data) weekEvents[`${startDate} ${hour}:30`].push(item);else weekEvents[`${startDate} ${hour}:30`] = [item];
+      var half_hour_data = weekEvents[startDate + " " + hour + ":30"];
+      if (half_hour_data) weekEvents[startDate + " " + hour + ":30"].push(item);else weekEvents[startDate + " " + hour + ":30"] = [item];
     }
   });
   return weekEvents;
 });
 
-const Week = props => {
-  const {
-    min,
-    max,
-    weekRootClassName,
-    events,
-    date,
-    fixedHeader,
-    onSelectEvent,
-    onSelectSlot
-  } = props;
-  let timeArray = getCalendarDayTimeArray(min, max);
-  let weekArray = getCalendarWeekArray(date);
-  let weekEvents = getWeekEvents(events);
+var Week = function Week(props) {
+  var min = props.min,
+      max = props.max,
+      weekRootClassName = props.weekRootClassName,
+      events = props.events,
+      date = props.date,
+      fixedHeader = props.fixedHeader,
+      onSelectEvent = props.onSelectEvent,
+      onSelectSlot = props.onSelectSlot;
+  var timeArray = getCalendarDayTimeArray(min, max);
+  var weekArray = getCalendarWeekArray(date);
+  var weekEvents = getWeekEvents(events);
   return /*#__PURE__*/React.createElement("div", {
     className: classNames(styles.weekView, weekRootClassName)
   }, /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("colgroup", null, /*#__PURE__*/React.createElement("col", {
     style: {
-      width: '5%'
+      width: 60
     }
   })), /*#__PURE__*/React.createElement(WeekTitleRow, {
-    weekArray,
-    fixedHeader
-  }), timeArray && timeArray.map((item, index) => /*#__PURE__*/React.createElement(TimeRow, Object.assign({
-    key: index,
-    time: item
-  }, {
-    weekArray,
-    weekEvents,
-    onSelectEvent,
-    onSelectSlot
-  })))));
+    weekArray: weekArray,
+    fixedHeader: fixedHeader
+  }), timeArray && timeArray.map(function (item, index) {
+    return /*#__PURE__*/React.createElement(TimeRow, _extends({
+      key: index,
+      time: item
+    }, {
+      weekArray: weekArray,
+      weekEvents: weekEvents,
+      onSelectEvent: onSelectEvent,
+      onSelectSlot: onSelectSlot
+    }));
+  })));
 };
 
 Week.propTypes = {
@@ -1681,37 +1701,42 @@ Week.propTypes = {
   onSelectSlot: propTypes.func
 };
 
-var style = {"root":"_style-module__root__hQD01","calendar":"_style-module__calendar__mNSVf"};
+var style = {"root":"_hQD01","calendar":"_mNSVf"};
 
-const ReactCalendarSchedule = props => {
-  const {
-    rootClassName,
-    components
-  } = props;
-  const [view, onViewChange] = useState(props.view);
-  const [date, onNavigate] = useState(props.date);
-  const CustomToolbar = components.Toolbar;
+var ReactCalendarSchedule = function ReactCalendarSchedule(props) {
+  var rootClassName = props.rootClassName,
+      components = props.components;
 
-  const getView = () => {
+  var _useState = useState(props.view),
+      view = _useState[0],
+      onViewChange = _useState[1];
+
+  var _useState2 = useState(props.date),
+      date = _useState2[0],
+      onNavigate = _useState2[1];
+
+  var CustomToolbar = components && components.Toolbar;
+
+  var getView = function getView() {
     switch (view) {
       case 'month':
-        return /*#__PURE__*/React.createElement(Month, Object.assign({}, props, {
-          date
+        return /*#__PURE__*/React.createElement(Month, _extends({}, props, {
+          date: date
         }));
 
       case 'day':
-        return /*#__PURE__*/React.createElement(Day, Object.assign({}, props, {
-          date
+        return /*#__PURE__*/React.createElement(Day, _extends({}, props, {
+          date: date
         }));
 
       case 'week':
-        return /*#__PURE__*/React.createElement(Week, Object.assign({}, props, {
-          date
+        return /*#__PURE__*/React.createElement(Week, _extends({}, props, {
+          date: date
         }));
 
       default:
-        return /*#__PURE__*/React.createElement(Month, Object.assign({}, props, {
-          date
+        return /*#__PURE__*/React.createElement(Month, _extends({}, props, {
+          date: date
         }));
     }
   };
@@ -1719,11 +1744,13 @@ const ReactCalendarSchedule = props => {
   return /*#__PURE__*/React.createElement("div", {
     className: classNames(style.root, rootClassName)
   }, CustomToolbar ? /*#__PURE__*/React.createElement(CustomToolbar, {
-    onViewChange,
-    onNavigate
+    onViewChange: onViewChange,
+    onNavigate: onNavigate,
+    view: view,
+    date: date
   }) : /*#__PURE__*/React.createElement(ToolBar, {
-    onViewChange,
-    onNavigate
+    onViewChange: onViewChange,
+    onNavigate: onNavigate
   }), /*#__PURE__*/React.createElement("div", {
     className: style.calendar
   }, getView()));
@@ -1732,7 +1759,7 @@ const ReactCalendarSchedule = props => {
 ReactCalendarSchedule.propTypes = {
   view: propTypes.string,
   date: propTypes.string,
-  events: propTypes.array,
+  events: propTypes.array.isRequired,
   resources: propTypes.array,
   resourceTitleAccessor: propTypes.string,
   resourceIdAccessor: propTypes.string,

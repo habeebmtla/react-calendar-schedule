@@ -1118,7 +1118,7 @@ var getCalendarMonthArray = (function (selectedDate) {
   return calendar;
 });
 
-var monthStyles = {"monthView":"_month_style-module__monthView__3XGYO","event":"_month_style-module__event__39Rn3"};
+var monthStyles = {"monthView":"_3XGYO","event":"_39Rn3"};
 
 var DayEvents = function DayEvents(props) {
   var dayEvents = props.dayEvents,
@@ -1127,7 +1127,8 @@ var DayEvents = function DayEvents(props) {
     style: {
       display: 'flex',
       marginTop: 15,
-      position: 'absolute'
+      position: 'absolute',
+      left: 2
     }
   }, dayEvents && dayEvents.map(function (item, index) {
     if (index < 5) return /*#__PURE__*/React__default.createElement("div", {
@@ -1279,7 +1280,7 @@ var getCalendarDayTimeArray = (function (min, max) {
   return timeArray;
 });
 
-var dayViewStyle = {"dayView":"_day_style-module__dayView__3emB6","time":"_day_style-module__time__1bULH","event":"_day_style-module__event__2rGJH"};
+var dayViewStyle = {"dayView":"_3emB6","time":"_1bULH","event":"_2rGJH"};
 
 var SINGLE_EVENT_HEIGHT = 50;
 var EVENT_PADDING = 20;
@@ -1551,7 +1552,7 @@ WeekTitleRow.propTypes = {
   fixedHeader: propTypes.bool
 };
 
-var styles = {"weekView":"_week_style-module__weekView__2lP0W","time":"_week_style-module__time__2D6wS","event":"_week_style-module__event__8k6qD"};
+var styles = {"weekView":"_2lP0W","time":"_2D6wS","event":"_8k6qD"};
 
 var WeekEvents = function WeekEvents(props) {
   var weekDay = props.weekDay,
@@ -1563,7 +1564,8 @@ var WeekEvents = function WeekEvents(props) {
     style: {
       display: 'flex',
       position: 'absolute',
-      top: 0
+      top: 2,
+      left: 2
     }
   }, weekEvents[dateTime] && weekEvents[dateTime].map(function (item, index) {
     if (index < 5) return /*#__PURE__*/React__default.createElement("div", {
@@ -1673,7 +1675,7 @@ var Week = function Week(props) {
     className: classNames(styles.weekView, weekRootClassName)
   }, /*#__PURE__*/React__default.createElement("table", null, /*#__PURE__*/React__default.createElement("colgroup", null, /*#__PURE__*/React__default.createElement("col", {
     style: {
-      width: '5%'
+      width: 60
     }
   })), /*#__PURE__*/React__default.createElement(WeekTitleRow, {
     weekArray: weekArray,
@@ -1702,7 +1704,7 @@ Week.propTypes = {
   onSelectSlot: propTypes.func
 };
 
-var style = {"root":"_style-module__root__hQD01","calendar":"_style-module__calendar__mNSVf"};
+var style = {"root":"_hQD01","calendar":"_mNSVf"};
 
 var ReactCalendarSchedule = function ReactCalendarSchedule(props) {
   var rootClassName = props.rootClassName,
@@ -1716,7 +1718,7 @@ var ReactCalendarSchedule = function ReactCalendarSchedule(props) {
       date = _useState2[0],
       onNavigate = _useState2[1];
 
-  var CustomToolbar = components.Toolbar;
+  var CustomToolbar = components && components.Toolbar;
 
   var getView = function getView() {
     switch (view) {
@@ -1746,7 +1748,9 @@ var ReactCalendarSchedule = function ReactCalendarSchedule(props) {
     className: classNames(style.root, rootClassName)
   }, CustomToolbar ? /*#__PURE__*/React__default.createElement(CustomToolbar, {
     onViewChange: onViewChange,
-    onNavigate: onNavigate
+    onNavigate: onNavigate,
+    view: view,
+    date: date
   }) : /*#__PURE__*/React__default.createElement(ToolBar, {
     onViewChange: onViewChange,
     onNavigate: onNavigate
@@ -1758,7 +1762,7 @@ var ReactCalendarSchedule = function ReactCalendarSchedule(props) {
 ReactCalendarSchedule.propTypes = {
   view: propTypes.string,
   date: propTypes.string,
-  events: propTypes.array,
+  events: propTypes.array.isRequired,
   resources: propTypes.array,
   resourceTitleAccessor: propTypes.string,
   resourceIdAccessor: propTypes.string,
