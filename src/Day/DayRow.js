@@ -12,8 +12,8 @@ const DayRow = props => {
     let start = date + ` ${time}`
     let end = date + ` ${moment(time, 'HH:mm').add(30, 'minute').format('HH:mm')}`
     let slotInfo = {
-      start,
-      end
+      start: moment(start).toDate(),
+      end: moment(end).toDate()
     }
     onSelectSlot(slotInfo)
   }

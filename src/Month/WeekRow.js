@@ -7,9 +7,10 @@ const WeekRow = props => {
   let { days, monthEvents, onSelectEvent, onSelectSlot } = props
 
   const selectSlot = (slot) => {
+    let datetime = slot.format('YYYY-MM-DD HH:mm')
     let slotInfo = {
-      start: slot.format('YYYY-MM-DD HH:mm'),
-      end: slot.format('YYYY-MM-DD HH:mm')
+      start: moment(datetime).toDate(),
+      end: moment(datetime).toDate()
     }
     onSelectSlot(slotInfo)
   }

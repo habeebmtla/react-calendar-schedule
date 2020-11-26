@@ -1160,9 +1160,10 @@ var WeekRow = function WeekRow(props) {
       onSelectSlot = props.onSelectSlot;
 
   var selectSlot = function selectSlot(slot) {
+    var datetime = slot.format('YYYY-MM-DD HH:mm');
     var slotInfo = {
-      start: slot.format('YYYY-MM-DD HH:mm'),
-      end: slot.format('YYYY-MM-DD HH:mm')
+      start: moment(datetime).toDate(),
+      end: moment(datetime).toDate()
     };
     onSelectSlot(slotInfo);
   };
@@ -1208,7 +1209,7 @@ var fixedHeaderStyle = {
   position: 'sticky',
   top: 0,
   background: '#495668',
-  zIndex: 1
+  zIndex: 5
 };
 
 var WeekHeader = function WeekHeader(props) {
@@ -1358,8 +1359,8 @@ var DayRow = function DayRow(props) {
     var start = date + (" " + time);
     var end = date + (" " + moment(time, 'HH:mm').add(30, 'minute').format('HH:mm'));
     var slotInfo = {
-      start: start,
-      end: end
+      start: moment(start).toDate(),
+      end: moment(end).toDate()
     };
     onSelectSlot(slotInfo);
   };
@@ -1613,8 +1614,8 @@ var TimeRow = function TimeRow(props) {
     var start = date + (" " + time);
     var end = date + (" " + moment(time, 'HH:mm').add(30, 'minute').format('HH:mm'));
     var slotInfo = {
-      start: start,
-      end: end
+      start: moment(start).toDate(),
+      end: moment(end).toDate()
     };
     onSelectSlot(slotInfo);
   };
